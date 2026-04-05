@@ -1,0 +1,50 @@
+body {
+  background: #0f0f0f;
+  color: white;
+  text-align: center;
+  padding-top: 60px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+a button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #00ff88;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  transition: 0.2s;
+}
+
+a button:hover {
+  background: #00cc66;
+}
+
+/* Celular */
+@media (max-width: 600px) {
+  body {
+    padding-top: 30px;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  p {
+    font-size: 1em;
+  }
+  a button {
+    padding: 12px 25px;
+    font-size: 1em;
+    width: 80%;
+  }
+}
