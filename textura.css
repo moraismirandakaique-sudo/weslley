@@ -1,8 +1,9 @@
 body {
     margin: 0;
+    height: 100vh;
 
     /* IMAGEM DE FUNDO */
-    background-image: url("img/fundo.jpg"); /* caminho da imagem */
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20230615/pngtree-an-image-showing-a-minecraft-house-image_2921447.jpg"); /* caminho da imagem */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -14,6 +15,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
     gap: 15px;
 }
 
@@ -24,8 +27,11 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    background-color: #2ecc71;
+    color: rgb(255, 255, 255);
+
 }
- /* fundo */
- body {
-    background-image: url("img/fundo.jpg");
+p, b {
+    color: white;
+    text-shadow: 2px 2px 5px black;
 }
