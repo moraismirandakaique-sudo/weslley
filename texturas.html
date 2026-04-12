@@ -18,5 +18,17 @@ function baixando() {
     document.getElementById("status").innerText = "Baixando pacote...";
 }
 </script>
+<script>
+function baixando() {
+    const status = document.getElementById("status");
+
+    status.innerText = "Baixando pacote...";
+
+    // simula conclusão depois de 3 segundos
+    setTimeout(() => {
+        status.innerText = "Download do pacote concluído!";
+    }, 3000);
+}
+</script>
 </body>
 </html>
