@@ -48,3 +48,12 @@ a button:hover {
     width: 80%;
   }
 }
+.creditos {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    text-shadow: 2px 2px 5px black;
+}
