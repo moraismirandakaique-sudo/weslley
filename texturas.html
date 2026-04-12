@@ -8,15 +8,15 @@
 </head>
 
 <body>
-    <p><b>Arquivo:</b> WeslleyMCV1.4-2.mcpack</p>
-<a href="WeslleyMCV1.4-2.mcpack" download>
-    <button>Baixar textura</button>
-    
-</a>
-    <p><b>Pacote:</b> Pacote WeslleyMC V1.5.mcpack</p>
-<a href= "PacoteWeslleyMCV1.5.mcaddon" download>
-    <button>Baixar pacote</button>
-</a>
+    <h1 id="status"> Pacote WeslleyMC V1.4 </h1>
 
+<a href="PacoteWeslleyMCV1.4.mcaddon" download>
+    <button onclick="baixando()">Baixar pacote</button>
+</a>
+<script>
+function baixando() {
+    document.getElementById("status").innerText = "Baixando pacote...";
+}
+</script>
 </body>
 </html>

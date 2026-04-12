@@ -33,5 +33,9 @@ button {
 }
 p, b {
     color: white;
-    text-shadow: 2px 2px 5px black;
+    text-shadow: 2px 2px 5px rgba(7, 1, 1, 0.94);
+}
+h1 {
+    color: white;
+    text-shadow: 2px 2px 5px rgba(7, 1, 1, 0.94);
 }
