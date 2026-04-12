@@ -17,22 +17,5 @@
 <a href="FPSBoosterv1.9.6(1).mcpack" download>
     <button onclick="baixando()">Baixar pacote</button>
 </a>
-<script>
-function baixando() {
-    document.getElementById("status").innerText = "Baixando pacote...";
-}
-</script>
-<script>
-function baixando() {
-    const status = document.getElementById("status");
-
-    status.innerText = "Baixando pacote...";
-
-    // simula conclusão depois de 3 segundos
-    setTimeout(() => {
-        status.innerText = "Download do pacote concluído!";
-    }, 3000);
-}
-</script>
 </body>
 </html>
