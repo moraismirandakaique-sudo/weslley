@@ -1,23 +1,398 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Pack de Textura</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pack de Texturas — WeslleyMC & Kaique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:      #5dba47;
+      --green-l:    #7ed45f;
+      --green-d:    #3a8c28;
+      --green-glow: rgba(93,186,71,0.45);
+      --dirt:       #8B5E3C;
+      --bg:         #080c08;
+      --gold:       #FFD700;
+      --discord:    #5865F2;
+      --tiktok:     #ff0050;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Press Start 2P',cursive;
+      background:var(--bg);
+      color:#e8f5e8;
+      overflow-x:hidden;
+      cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='16' height='16' fill='%235dba47'/%3E%3C/svg%3E") 8 8,auto;
+    }
 
-<!-- Conectando o CSS -->
-<link rel="stylesheet" href="style.css">
+    /* CANVAS */
+    #particleCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    /* ═══════════ HERO ═══════════ */
+    .hero{position:relative;z-index:1;overflow:hidden;}
+    .sky{
+      background:linear-gradient(180deg,#0a1628 0%,#12296b 35%,#1e5fa8 65%,#5fa8d3 85%,#a8d8ea 100%);
+      padding:70px 20px 24px;
+      position:relative;min-height:380px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .star{position:absolute;background:#fff;animation:twinkle var(--d,3s) infinite alternate;}
+    @keyframes twinkle{from{opacity:.05;transform:scale(1);}to{opacity:.95;transform:scale(1.6);}}
+
+    .sun{
+      position:absolute;top:28px;right:10%;
+      width:56px;height:56px;background:var(--gold);
+      box-shadow:0 0 0 8px #fff9c4,0 0 40px var(--gold);
+      animation:sunPulse 5s ease-in-out infinite;
+    }
+    @keyframes sunPulse{
+      0%,100%{box-shadow:0 0 0 8px #fff9c4,0 0 40px var(--gold);}
+      50%{box-shadow:0 0 0 14px #fff9c4,0 0 70px var(--gold);}
+    }
+    .cloud{position:absolute;background:#fff;opacity:.88;animation:cloudDrift var(--cd,30s) linear infinite;}
+    .cloud::before,.cloud::after{content:'';position:absolute;background:inherit;}
+    .c1{width:96px;height:24px;top:55px;left:-120px;--cd:28s;}
+    .c1::before{width:56px;height:24px;top:-16px;left:16px;}
+    .c1::after{width:40px;height:16px;top:-8px;left:44px;}
+    .c2{width:72px;height:20px;top:90px;left:-200px;--cd:44s;animation-delay:-15s;}
+    .c2::before{width:40px;height:20px;top:-14px;left:12px;}
+    .c3{width:112px;height:28px;top:30px;left:-300px;--cd:36s;animation-delay:-8s;}
+    .c3::before{width:64px;height:28px;top:-20px;left:24px;}
+    @keyframes cloudDrift{from{transform:translateX(0);}to{transform:translateX(calc(100vw + 350px));}}
+
+    /* CREEPER */
+    .creeper-hero{
+      width:84px;height:84px;image-rendering:pixelated;
+      animation:creeperFloat 3s ease-in-out infinite,creeperIn 1.2s cubic-bezier(.34,1.56,.64,1) both;
+      filter:drop-shadow(0 0 16px var(--green-glow));
+      margin-bottom:16px;cursor:pointer;
+    }
+    @keyframes creeperFloat{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-10px) rotate(1deg);}}
+    @keyframes creeperIn{from{opacity:0;transform:scale(0) rotate(-20deg);}to{opacity:1;transform:scale(1) rotate(-1deg);}}
+
+    .badge{font-size:clamp(6px,1.2vw,9px);color:var(--green-l);text-shadow:2px 2px 0 #000;letter-spacing:3px;margin-bottom:12px;animation:fs 1s .1s both;}
+    .hero-title{
+      font-size:clamp(18px,4.5vw,40px);color:#fff;
+      text-shadow:5px 5px 0 #000,-2px -2px 0 #000;
+      line-height:1.5;text-align:center;
+      animation:tBounce 1s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .hero-title .accent{color:var(--green-l);}
+    .hero-sub{font-size:clamp(7px,1.3vw,10px);color:#cde8cd;text-shadow:2px 2px 0 #000;margin-top:12px;animation:fs 1s .3s both;text-align:center;}
+    @keyframes tBounce{from{opacity:0;transform:translateY(-80px) scale(.7);}to{opacity:1;transform:translateY(0) scale(1);}}
+    @keyframes fs{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+    /* SOCIAL */
+    .social-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:24px;animation:fs 1s .5s both;}
+    .btn-social{
+      display:flex;align-items:center;gap:8px;
+      padding:11px 18px;font-family:'Press Start 2P',cursive;
+      font-size:clamp(6px,1.2vw,9px);border:none;cursor:pointer;
+      text-decoration:none;color:#fff;letter-spacing:1px;
+      transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;
+    }
+    .btn-social::after{content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;background:rgba(255,255,255,.2);transform:skewX(-20deg);animation:shine 3s 1s infinite;}
+    @keyframes shine{0%{left:-70%;}40%,100%{left:130%;}}
+    .btn-tiktok{background:var(--tiktok);box-shadow:0 5px 0 #990030;}
+    .btn-tiktok:hover{background:#ff2060;transform:translateY(-3px);box-shadow:0 8px 0 #990030,0 0 20px var(--tiktok);}
+    .btn-tiktok:active{transform:translateY(3px);box-shadow:0 2px 0 #990030;}
+    .btn-discord{background:var(--discord);box-shadow:0 5px 0 #3b4ac7;}
+    .btn-discord:hover{background:#7289ff;transform:translateY(-3px);box-shadow:0 8px 0 #3b4ac7,0 0 20px var(--discord);}
+    .btn-discord:active{transform:translateY(3px);box-shadow:0 2px 0 #3b4ac7;}
+
+    /* TERRAIN */
+    .terrain-wrap{position:relative;height:72px;overflow:hidden;}
+    .t-grass{display:flex;align-items:flex-end;position:absolute;bottom:24px;left:0;right:0;}
+    .t-dirt{position:absolute;bottom:0;left:0;right:0;height:24px;
+      background:repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 2px,transparent 2px 8px),
+                repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 2px,transparent 2px 8px),var(--dirt);}
+    .gb{flex:1;image-rendering:pixelated;
+      background:
+        repeating-linear-gradient(90deg,rgba(0,0,0,.06) 0 2px,transparent 2px 4px),
+        repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 2px,transparent 2px 4px),
+        linear-gradient(180deg,var(--green) 28%,var(--dirt) 28%);}
+    .gb:nth-child(3n){height:48px;}.gb:nth-child(5n){height:40px;}
+    .gb:nth-child(7n+2){height:56px;}.gb:nth-child(2n+1){height:32px;}
+
+    /* ═══════════ MAIN ═══════════ */
+    main{
+      position:relative;z-index:1;
+      background:
+        repeating-linear-gradient(0deg,rgba(93,186,71,.025) 0 1px,transparent 1px 8px),
+        repeating-linear-gradient(90deg,rgba(93,186,71,.025) 0 1px,transparent 1px 8px),
+        var(--bg);
+      padding:70px 20px 60px;
+      text-align:center;
+    }
+
+    .sec-label{
+      font-size:clamp(9px,1.8vw,14px);color:var(--green-l);
+      text-shadow:3px 3px 0 #000;margin-bottom:40px;
+    }
+    .sec-label::before,.sec-label::after{
+      content:'';display:inline-block;width:clamp(20px,5vw,60px);height:3px;
+      background:var(--green-d);vertical-align:middle;margin:0 12px;
+    }
+
+    /* COLLAB BOX */
+    .collab{
+      display:inline-flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;
+      background:#0e1a0e;border:3px solid #1f3b1f;
+      border-bottom:6px solid #0a120a;border-right:6px solid #0a120a;
+      padding:24px 32px;margin-bottom:50px;
+      animation:fs 1s .2s both;
+    }
+    .collab-name{
+      font-size:clamp(8px,1.5vw,11px);color:#fff;text-shadow:2px 2px 0 #000;
+      line-height:1.8;
+    }
+    .collab-name span{color:var(--green-l);}
+    .collab-x{font-size:10px;color:#3a5a3a;}
+
+    /* MAIN CTA */
+    .btn-main{
+      display:inline-block;padding:18px 36px;
+      background:var(--green);color:#000;
+      font-family:'Press Start 2P',cursive;font-size:clamp(9px,1.6vw,13px);
+      border:none;cursor:pointer;letter-spacing:1px;text-decoration:none;
+      box-shadow:0 6px 0 var(--green-d),inset 0 1px 0 rgba(255,255,255,.25);
+      transition:transform .1s,box-shadow .1s,background .15s;
+      position:relative;overflow:hidden;
+      animation:fs 1s .4s both;
+    }
+    .btn-main::after{content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);animation:shine 3s infinite;}
+    .btn-main:hover{background:var(--green-l);transform:scale(1.05) rotate(-1deg);}
+    .btn-main:active{transform:translateY(4px) scale(.98);box-shadow:0 2px 0 var(--green-d);}
+
+    /* STATS */
+    .stats{display:flex;justify-content:center;gap:clamp(24px,6vw,70px);flex-wrap:wrap;margin-top:60px;}
+    .stat{text-align:center;}
+    .stat-n{display:block;font-size:clamp(18px,4vw,32px);color:var(--green);text-shadow:3px 3px 0 #000;margin-bottom:8px;}
+    .stat-l{font-size:6px;color:#4a6a4a;}
+
+    /* BOTTOM TERRAIN */
+    .bot-terrain{display:flex;align-items:flex-end;overflow:hidden;position:relative;z-index:1;}
+    .sb{flex:1;image-rendering:pixelated;
+      background:repeating-linear-gradient(90deg,rgba(0,0,0,.15) 0 2px,transparent 2px 8px),
+                repeating-linear-gradient(0deg,rgba(0,0,0,.15) 0 2px,transparent 2px 8px),#333;}
+    .sb:nth-child(even){height:28px;background-color:#2a2a2a;}
+    .sb:nth-child(odd){height:36px;background-color:#333;}
+    .sb:nth-child(3n){height:20px;background-color:#3a3a3a;}
+    .sb:nth-child(5n+1){height:44px;background-color:#222;}
+
+    /* FOOTER */
+    footer{background:#000;padding:36px 20px;text-align:center;position:relative;z-index:1;}
+    .footer-creeper{width:44px;height:44px;image-rendering:pixelated;margin:0 auto 14px;animation:creeperFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 8px var(--green-glow));}
+    .footer-name{font-size:clamp(10px,2vw,16px);color:var(--green);text-shadow:3px 3px 0 #000;margin-bottom:8px;}
+    .footer-sub{font-size:7px;color:#2a4a2a;margin-bottom:18px;}
+    .footer-credits{font-size:7px;color:#3a6a3a;margin-bottom:16px;line-height:2;}
+    .footer-credits span{color:var(--green-l);}
+    .footer-socials{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+    .heart{color:#e74c3c;animation:hb 1s ease-in-out infinite;display:inline-block;}
+    @keyframes hb{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
+    .footer-copy{font-size:6px;color:#1a2a1a;}
+
+    /* TOAST */
+    #toast{
+      position:fixed;bottom:28px;left:50%;
+      transform:translateX(-50%) translateY(120px);
+      background:#0e1a0e;border:3px solid var(--green);
+      padding:12px 22px;font-size:8px;color:var(--green-l);
+      z-index:9999;transition:transform .45s cubic-bezier(.34,1.56,.64,1);
+      box-shadow:0 0 24px var(--green-glow);white-space:nowrap;text-shadow:1px 1px 0 #000;
+    }
+    #toast.on{transform:translateX(-50%) translateY(0);}
+
+    /* CORNER CREEPER */
+    #cornerCreeper{
+      position:fixed;bottom:-90px;right:24px;z-index:200;cursor:pointer;
+      transition:bottom .55s cubic-bezier(.34,1.56,.64,1);
+      filter:drop-shadow(0 0 12px var(--green-glow));
+    }
+    #cornerCreeper.peek{bottom:0;}
+    #cornerCreeper:hover{animation:cShake .35s ease;}
+    @keyframes cShake{0%,100%{transform:rotate(0);}25%{transform:rotate(-12deg) scale(1.15);}75%{transform:rotate(12deg) scale(1.15);}}
+  </style>
 </head>
-
 <body>
-<h1>Packs de Texturas</h1>
 
-<p>Tomara que goste 😈</p>
-<p>Clique no botão abaixo para ver as texturas 👇</p>
-<a href="texturas.html"><button class="btn">Ver Texturas</button>
-    <p class="creditos">Créditos: Kaique Morais e WeslleyMC</p>
-</a>
+<canvas id="particleCanvas"></canvas>
 
+<!-- Corner creeper -->
+<div id="cornerCreeper">
+  <svg width="60" height="60" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="2"  y="0"  width="12" height="12" fill="#4a9c4a"/>
+    <rect x="2"  y="0"  width="12" height="1"  fill="#3a8a3a"/>
+    <rect x="4"  y="3"  width="3"  height="3"  fill="#111"/>
+    <rect x="9"  y="3"  width="3"  height="3"  fill="#111"/>
+    <rect x="6"  y="7"  width="4"  height="2"  fill="#111"/>
+    <rect x="5"  y="8"  width="2"  height="2"  fill="#111"/>
+    <rect x="9"  y="8"  width="2"  height="2"  fill="#111"/>
+    <rect x="4"  y="12" width="8"  height="6"  fill="#4a9c4a"/>
+    <rect x="4"  y="12" width="8"  height="1"  fill="#3a8a3a"/>
+    <rect x="5"  y="13" width="2"  height="2"  fill="#3a8a3a"/>
+    <rect x="9"  y="15" width="2"  height="2"  fill="#3a8a3a"/>
+    <rect x="3"  y="17" width="4"  height="3"  fill="#4a9c4a"/>
+    <rect x="9"  y="17" width="4"  height="3"  fill="#4a9c4a"/>
+  </svg>
+</div>
+
+<div id="toast">💚 Bem-vindo!</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="sky" id="skyEl">
+    <div class="sun"></div>
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+
+    <svg class="creeper-hero" id="heroCreeper" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2"  y="0"  width="12" height="12" fill="#4a9c4a"/>
+      <rect x="2"  y="0"  width="12" height="1"  fill="#3a8a3a"/>
+      <rect x="4"  y="3"  width="3"  height="3"  fill="#111"/>
+      <rect x="9"  y="3"  width="3"  height="3"  fill="#111"/>
+      <rect x="4"  y="3"  width="1"  height="1"  fill="#2a2a2a"/>
+      <rect x="9"  y="3"  width="1"  height="1"  fill="#2a2a2a"/>
+      <rect x="6"  y="7"  width="4"  height="2"  fill="#111"/>
+      <rect x="5"  y="8"  width="2"  height="2"  fill="#111"/>
+      <rect x="9"  y="8"  width="2"  height="2"  fill="#111"/>
+      <rect x="4"  y="12" width="8"  height="6"  fill="#4a9c4a"/>
+      <rect x="4"  y="12" width="8"  height="1"  fill="#3a8a3a"/>
+      <rect x="5"  y="13" width="2"  height="2"  fill="#3a8a3a"/>
+      <rect x="9"  y="15" width="2"  height="2"  fill="#3a8a3a"/>
+      <rect x="3"  y="17" width="4"  height="3"  fill="#4a9c4a"/>
+      <rect x="9"  y="17" width="4"  height="3"  fill="#4a9c4a"/>
+    </svg>
+
+    <p class="badge">✦ PACOTE OFICIAL DE TEXTURAS ✦</p>
+    <h1 class="hero-title">PACK DE<br><span class="accent">TEXTURAS</span></h1>
+    <p class="hero-sub">Tomara que goste 😈 &nbsp;|&nbsp; Feito com 💚</p>
+
+    <div class="social-row">
+      <a class="btn-social btn-tiktok" href="https://www.tiktok.com/@weslleymc01" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+        @WESLLEYMC01
+      </a>
+      <a class="btn-social btn-discord" href="https://discord.gg/Wyg49JPAkw" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+        DISCORD
+      </a>
+    </div>
+  </div>
+
+  <div class="terrain-wrap">
+    <div class="t-grass" id="grassRow"></div>
+    <div class="t-dirt"></div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+  <p class="sec-label">PRONTO PARA JOGAR?</p>
+  <a class="btn-main" href="texturas.html">▶ VER TEXTURAS</a>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-n">2</span><span class="stat-l">PACOTES</span></div>
+    <div class="stat"><span class="stat-n">1.20+</span><span class="stat-l">VERSÃO</span></div>
+    <div class="stat"><span class="stat-n">FREE</span><span class="stat-l">PREÇO</span></div>
+  </div>
+
+  <p class="sec-label" style="margin-top:60px;">CRIADO POR</p>
+
+  <div class="collab">
+    <div class="collab-name">⚔️ <span>WESLLEYMC</span></div>
+    <div class="collab-x">✦</div>
+    <div class="collab-name">🎨 <span>KAIQUE MORAIS</span></div>
+  </div>
+</main>
+
+<div class="bot-terrain" id="botTerrain"></div>
+
+<footer>
+  <svg class="footer-creeper" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2"  y="0"  width="12" height="12" fill="#4a9c4a"/>
+    <rect x="4"  y="3"  width="3"  height="3"  fill="#111"/>
+    <rect x="9"  y="3"  width="3"  height="3"  fill="#111"/>
+    <rect x="6"  y="7"  width="4"  height="2"  fill="#111"/>
+    <rect x="5"  y="8"  width="2"  height="2"  fill="#111"/>
+    <rect x="9"  y="8"  width="2"  height="2"  fill="#111"/>
+    <rect x="4"  y="12" width="8"  height="6"  fill="#4a9c4a"/>
+    <rect x="3"  y="17" width="4"  height="3"  fill="#4a9c4a"/>
+    <rect x="9"  y="17" width="4"  height="3"  fill="#4a9c4a"/>
+  </svg>
+  <p class="footer-name">PACK DE TEXTURAS</p>
+  <p class="footer-credits">Por <span>WeslleyMC</span> &amp; <span>Kaique Morais</span></p>
+  <p class="footer-sub">Feito com <span class="heart">♥</span> para a comunidade</p>
+  <div class="footer-socials">
+    <a class="btn-social btn-tiktok" href="https://www.tiktok.com/@weslleymc01" target="_blank" rel="noopener" style="font-size:6px;padding:8px 14px;">@WESLLEYMC01</a>
+    <a class="btn-social btn-discord" href="https://discord.gg/Wyg49JPAkw" target="_blank" rel="noopener" style="font-size:6px;padding:8px 14px;">DISCORD</a>
+  </div>
+  <p class="footer-copy">© 2025 WeslleyMC &amp; Kaique Morais · Todos os direitos reservados</p>
+</footer>
+
+<script>
+// PARTICLES
+const canvas=document.getElementById('particleCanvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+const pColors=['#5dba47','#7ed45f','#3a8c28','#FFD700','#8B5E3C','#1e5fa8','#ffffff'];
+const particles=Array.from({length:60},()=>({
+  x:Math.random()*2000,y:Math.random()*2000,
+  vx:(Math.random()-.5)*.4,vy:-(Math.random()*.5+.15),
+  size:Math.random()*7+3,color:pColors[Math.floor(Math.random()*pColors.length)],
+  alpha:Math.random()*.4+.08,rot:Math.random()*360,rotSpeed:(Math.random()-.5)*1.5
+}));
+function drawP(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.rot+=p.rotSpeed;
+    if(p.y<-20){p.y=H+20;p.x=Math.random()*W;}
+    if(p.x<-20)p.x=W+20;if(p.x>W+20)p.x=-20;
+    ctx.save();ctx.globalAlpha=p.alpha;
+    ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
+    ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+    ctx.restore();
+  });
+  requestAnimationFrame(drawP);
+}
+drawP();
+
+// STARS
+const sky=document.getElementById('skyEl');
+for(let i=0;i<60;i++){
+  const s=document.createElement('div');s.className='star';
+  const sz=Math.random()*3+1;
+  Object.assign(s.style,{width:sz+'px',height:sz+'px',top:Math.random()*70+'%',left:Math.random()*100+'%','--d':(Math.random()*4+1.5).toFixed(1)+'s',animationDelay:(Math.random()*6).toFixed(1)+'s',position:'absolute'});
+  sky.appendChild(s);
+}
+
+// TERRAIN
+const cols=Math.ceil(window.innerWidth/20)+4;
+const gr=document.getElementById('grassRow');
+const bt=document.getElementById('botTerrain');
+for(let i=0;i<cols;i++){
+  const g=document.createElement('div');g.className='gb';gr.appendChild(g);
+  const s=document.createElement('div');s.className='sb';bt.appendChild(s);
+}
+
+// TOAST
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('on');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),3000);
+}
+setTimeout(()=>toast('💚 Bem-vindo ao site!'),800);
+
+// CORNER CREEPER
+const cc=document.getElementById('cornerCreeper');
+setTimeout(()=>cc.classList.add('peek'),2500);
+cc.addEventListener('click',()=>toast('💥 SSSSS... Escapou por pouco!'));
+document.getElementById('heroCreeper').addEventListener('click',()=>toast('🟩 Creeper diz olá! 👋'));
+</script>
 </body>
 </html>
