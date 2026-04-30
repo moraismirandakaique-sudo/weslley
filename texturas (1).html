@@ -209,6 +209,30 @@
     }
     #toast.on{transform:translateX(-50%) translateY(0);}
 
+    /* COUNTER */
+    .card-counter{
+      display:flex;align-items:center;gap:8px;
+      margin-bottom:12px;padding:8px 10px;
+      background:#060e06;border:2px solid #1a3a1a;
+    }
+    .counter-label{font-size:6px;color:#4a7a4a;letter-spacing:1px;flex:1;}
+    .counter-num{
+      font-size:9px;color:var(--green-l);text-shadow:2px 2px 0 #000;
+      min-width:32px;text-align:right;
+    }
+    .counter-num.pop{animation:numPop .4s cubic-bezier(.34,1.56,.64,1);}
+    @keyframes numPop{from{transform:scale(1.6);color:#fff;}to{transform:scale(1);color:var(--green-l);}}
+
+    /* TOTAL BOX */
+    .total-box{
+      text-align:center;margin:50px auto 0;max-width:340px;
+      padding:24px 20px;background:#0e1a0e;
+      border:3px solid #1f3b1f;border-bottom:6px solid #0a120a;border-right:6px solid #0a120a;
+    }
+    .total-label{font-size:7px;color:#4a7a4a;margin-bottom:12px;letter-spacing:2px;}
+    .total-num{font-size:clamp(24px,5vw,40px);color:var(--green);text-shadow:4px 4px 0 #000;display:block;margin-bottom:6px;}
+    .total-sub{font-size:6px;color:#3a5a3a;letter-spacing:1px;}
+
     /* CORNER CREEPER */
     #cornerCreeper{position:fixed;bottom:-90px;right:24px;z-index:200;cursor:pointer;transition:bottom .55s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 0 12px var(--green-glow));}
     #cornerCreeper.peek{bottom:0;}
@@ -293,7 +317,11 @@
         <p class="card-version">versão 1.4</p>
         <h3 class="card-title">WESLLEYMC</h3>
         <p class="card-desc">Pack principal do WeslleyMC.<br>Visual refinado e único<br>para o seu jogo.</p>
-        <a class="btn-dl" href="WeslleyMCV1.4.mcpack" download="WeslleyMCV1.4.mcpack" onclick="toast('🌿 WeslleyMC V1.4 baixando!')">
+        <div class="card-counter">
+          <span class="counter-label">⬇ DOWNLOADS</span>
+          <span class="counter-num" id="count-wmc">...</span>
+        </div>
+        <a class="btn-dl" href="WeslleyMCV1.4.mcpack" download="WeslleyMCV1.4.mcpack" onclick="registrarDownload('wmc')">
           ⬇ BAIXAR AGORA
         </a>
       </div>
@@ -307,14 +335,24 @@
         <p class="card-version">versão 1.9.6</p>
         <h3 class="card-title">FPS BOOSTER</h3>
         <p class="card-desc">Melhora sua performance.<br>Mais FPS, menos lag,<br>mais vitórias.</p>
-        <a class="btn-dl" href="FPSBoosterv1.9.6(1).mcpack" download="FPSBoosterv1.9.6(1).mcpack" onclick="toast('⚡ FPS Booster V1.9.6 baixando!')">
+        <div class="card-counter">
+          <span class="counter-label">⬇ DOWNLOADS</span>
+          <span class="counter-num" id="count-fps">...</span>
+        </div>
+        <a class="btn-dl" href="FPSBoosterv1.9.6(1).mcpack" download="FPSBoosterv1.9.6(1).mcpack" onclick="registrarDownload('fps')">
           ⬇ BAIXAR AGORA
         </a>
       </div>
     </div>
 
   </div>
-</main>
+
+  <!-- TOTAL -->
+  <div class="total-box">
+    <p class="total-label">📦 TOTAL DE DOWNLOADS</p>
+    <span class="total-num" id="count-total">...</span>
+    <p class="total-sub">de todos os pacotes</p>
+  </div>
 
 <div class="bot-terrain" id="botTerrain"></div>
 
@@ -406,6 +444,90 @@ const cc=document.getElementById('cornerCreeper');
 setTimeout(()=>cc.classList.add('peek'),2500);
 cc.addEventListener('click',()=>toast('💥 SSSSS... Escapou por pouco!'));
 document.getElementById('heroCreeper').addEventListener('click',()=>toast('🟩 Creeper diz olá! 👋'));
+
+// ══════════════════════════════════════
+// SISTEMA DE CONTAGEM DE DOWNLOADS
+// Usa counterapi.dev — grátis, sem conta, sem servidor
+// ══════════════════════════════════════
+const NS = 'weslleymc-texturas-2025';
+const KEYS = { wmc: 'pack-weslleymc-v14', fps: 'fps-booster-v196' };
+const BASE = 'https://api.counterapi.dev/v1';
+
+const counts = { wmc: 0, fps: 0 };
+
+// Animação do número subindo
+function animateNumber(el, from, to, duration=600) {
+  const start = performance.now();
+  function update(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(from + (to - from) * ease);
+    if (p < 1) requestAnimationFrame(update);
+    else el.textContent = to;
+  }
+  requestAnimationFrame(update);
+}
+
+function atualizarTotal() {
+  const total = counts.wmc + counts.fps;
+  const el = document.getElementById('count-total');
+  animateNumber(el, 0, total);
+}
+
+// Busca os contadores atuais (sem incrementar)
+async function carregarContadores() {
+  try {
+    const [r1, r2] = await Promise.all([
+      fetch(`${BASE}/${NS}/${KEYS.wmc}`),
+      fetch(`${BASE}/${NS}/${KEYS.fps}`)
+    ]);
+    const [d1, d2] = await Promise.all([r1.json(), r2.json()]);
+
+    const wmcVal = d1.count || 0;
+    const fpsVal = d2.count || 0;
+    counts.wmc = wmcVal;
+    counts.fps = fpsVal;
+
+    animateNumber(document.getElementById('count-wmc'), 0, wmcVal);
+    animateNumber(document.getElementById('count-fps'), 0, fpsVal);
+    atualizarTotal();
+  } catch(e) {
+    document.getElementById('count-wmc').textContent = '—';
+    document.getElementById('count-fps').textContent = '—';
+    document.getElementById('count-total').textContent = '—';
+  }
+}
+
+// Registra download: incrementa o contador
+async function registrarDownload(pack) {
+  const key = KEYS[pack];
+  const elId = 'count-' + pack;
+  const el = document.getElementById(elId);
+
+  toast(pack === 'wmc' ? '🌿 WeslleyMC V1.4 baixando!' : '⚡ FPS Booster V1.9.6 baixando!');
+
+  try {
+    const r = await fetch(`${BASE}/${NS}/${key}/up`);
+    const d = await r.json();
+    const novoValor = d.count || 0;
+    const antigo = counts[pack];
+    counts[pack] = novoValor;
+
+    animateNumber(el, antigo, novoValor, 400);
+    el.classList.remove('pop');
+    void el.offsetWidth;
+    el.classList.add('pop');
+
+    atualizarTotal();
+  } catch(e) {
+    // Sem internet — incrementa local
+    counts[pack]++;
+    animateNumber(el, counts[pack]-1, counts[pack], 300);
+    atualizarTotal();
+  }
+}
+
+carregarContadores();
 </script>
 </body>
 </html>
