@@ -103,20 +103,36 @@ window.baixar = async function(nome){
 
 }
 
-// MOSTRAR ESTATÍSTICAS NO SITE
 
 async function mostrarEstatisticas(){
 
-    // VISITANTES
     const visitasRef = doc(db,"site","visitas");
     const visitasSnap = await getDoc(visitasRef);
 
     if(visitasSnap.exists()){
-
         document.getElementById("visitantes").textContent =
         visitasSnap.data().total;
-
     }
 
-window.addEventListener("DOMContentLoaded", mostrarEstatisticas);
+
+    const weslleyRef = doc(db,"downloads","WeslleyMC V1.4");
+    const weslleySnap = await getDoc(weslleyRef);
+
+    if(weslleySnap.exists()){
+        document.getElementById("downloadsWeslley").textContent =
+        weslleySnap.data().total;
+    }
+
+
+    const fpsRef = doc(db,"downloads","FPS Booster V1.9.6");
+    const fpsSnap = await getDoc(fpsRef);
+
+    if(fpsSnap.exists()){
+        document.getElementById("downloadsFPS").textContent =
+        fpsSnap.data().total;
+    }
+
 }
+
+
+mostrarEstatisticas();
