@@ -293,9 +293,12 @@
         <p class="card-version">versão 1.4</p>
         <h3 class="card-title">WESLLEYMC</h3>
         <p class="card-desc">Pack principal do WeslleyMC.<br>Visual refinado e único<br>para o seu jogo.</p>
-        <a class="btn-dl" href="WeslleyMCV1.4.mcpack" download="WeslleyMCV1.4.mcpack" onclick="toast('🌿 WeslleyMC V1.4 baixando!')">
-          ⬇ BAIXAR AGORA
-        </a>
+        <a class="btn-dl" 
+href="WeslleyMCV1.4.mcpack" 
+download="WeslleyMCV1.4.mcpack"
+onclick="baixar('WeslleyMC V1.4'); toast('🌿 WeslleyMC V1.4 baixando!')">
+  ⬇ BAIXAR AGORA
+</a>
       </div>
     </div>
 
@@ -307,8 +310,12 @@
         <p class="card-version">versão 1.9.6</p>
         <h3 class="card-title">FPS BOOSTER</h3>
         <p class="card-desc">Melhora sua performance.<br>Mais FPS, menos lag,<br>mais vitórias.</p>
-        <a class="btn-dl" href="FPSBoosterv1.9.6(1).mcpack" download="FPSBoosterv1.9.6(1).mcpack" onclick="toast('⚡ FPS Booster V1.9.6 baixando!')">
-          ⬇ BAIXAR AGORA
+        <a class="btn-dl" 
+href="FPSBoosterv1.9.6(1).mcpack" 
+download="FPSBoosterv1.9.6(1).mcpack"
+onclick="baixar('FPS Booster V1.9.6'); toast('⚡ FPS Booster V1.9.6 baixando!')">
+  ⬇ BAIXAR AGORA
+</a>
         </a>
       </div>
     </div>
@@ -407,5 +414,7 @@ setTimeout(()=>cc.classList.add('peek'),2500);
 cc.addEventListener('click',()=>toast('💥 SSSSS... Escapou por pouco!'));
 document.getElementById('heroCreeper').addEventListener('click',()=>toast('🟩 Creeper diz olá! 👋'));
 </script>
+<script type="module" src="js/firebase.js"></script>
+<p id="visitantes">0</p>
 </body>
 </html>
