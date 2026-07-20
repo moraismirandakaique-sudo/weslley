@@ -61,30 +61,6 @@ window.baixar = async function(nome){
 
     const snap = await getDoc(ref);
 
-
-    if(snap.exists()){
-
-        await setDoc(ref,{
-            total: snap.data().total + 1
-        });
-
-    }else{
-
-        await setDoc(ref,{
-            total:1
-        });
-
-    }
-
-    console.log("Download:", nome);
-
-}
-window.baixar = async function(nome){
-
-    const ref = doc(db,"downloads",nome);
-
-    const snap = await getDoc(ref);
-
     if(snap.exists()){
 
         await setDoc(ref,{
@@ -104,6 +80,7 @@ window.baixar = async function(nome){
 }
 
 
+// MOSTRAR ESTATÍSTICAS
 async function mostrarEstatisticas(){
 
     const visitasRef = doc(db,"site","visitas");
@@ -119,8 +96,12 @@ async function mostrarEstatisticas(){
     const weslleySnap = await getDoc(weslleyRef);
 
     if(weslleySnap.exists()){
+
+        console.log("Weslley:", weslleySnap.data().total);
+
         document.getElementById("downloadsWeslley").textContent =
         weslleySnap.data().total;
+
     }
 
 
@@ -128,11 +109,15 @@ async function mostrarEstatisticas(){
     const fpsSnap = await getDoc(fpsRef);
 
     if(fpsSnap.exists()){
+
+        console.log("FPS:", fpsSnap.data().total);
+
         document.getElementById("downloadsFPS").textContent =
         fpsSnap.data().total;
+
     }
 
 }
 
 
-mostrarEstatisticas();
+window.addEventListener("DOMContentLoaded", mostrarEstatisticas);
