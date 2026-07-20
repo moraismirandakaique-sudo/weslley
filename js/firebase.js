@@ -55,24 +55,30 @@ async function contarVisita(){
 contarVisita();
 
 
-// CONTADOR DE DOWNLOADS
+
+
 window.baixar = async function(nome){
 
     const ref = doc(db,"downloads",nome);
 
     const snap = await getDoc(ref);
 
-    let total = 1;
 
     if(snap.exists()){
-        total = snap.data().total + 1;
+
+        await setDoc(ref,{
+            total: snap.data().total + 1
+        });
+
+    }else{
+
+        await setDoc(ref,{
+            total:1
+        });
+
     }
 
-    await setDoc(ref,{
-        total: total
-    });
-
-    console.log("Download registrado:", nome, total);
+    console.log("Download:", nome);
 
 }
 
@@ -119,6 +125,6 @@ window.baixar = async function(nome){
 
     }
 
-}
+
 mostrarEstatisticas();
 
