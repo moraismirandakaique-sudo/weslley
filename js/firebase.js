@@ -118,31 +118,5 @@ async function mostrarEstatisticas(){
 
     }
 
-
-    // DOWNLOAD WESLLEYMC
-    const weslleyRef = doc(db,"downloads","WeslleyMC V1.4");
-    const weslleySnap = await getDoc(weslleyRef);
-
-    if(weslleySnap.exists()){
-
-        document.getElementById("downloadsWeslley").textContent =
-        weslleySnap.data().total;
-
-    }
-
-
-    // DOWNLOAD FPS BOOSTER
-    const fpsRef = doc(db,"downloads","FPS Booster V1.9.6");
-    const fpsSnap = await getDoc(fpsRef);
-
-    if(fpsSnap.exists()){
-
-        document.getElementById("downloadsFPS").textContent =
-        fpsSnap.data().total;
-
-    }
-
+window.addEventListener("DOMContentLoaded", mostrarEstatisticas);
 }
-
-
-mostrarEstatisticas();
