@@ -81,39 +81,44 @@ window.baixar = async function(nome){
 }
 
 
-// MOSTRAR ESTATÍSTICAS
+
 async function mostrarEstatisticas(){
 
+    // VISITANTES
     const visitasRef = doc(db,"site","visitas");
     const visitasSnap = await getDoc(visitasRef);
 
     if(visitasSnap.exists()){
+
         document.getElementById("visitantes").textContent =
         visitasSnap.data().total;
+
     }
 
 
+    // WESLLEYMC
     const weslleyRef = doc(db,"downloads","WeslleyMC V1.4");
     const weslleySnap = await getDoc(weslleyRef);
 
+    console.log("Weslley existe:", weslleySnap.exists());
+
     if(weslleySnap.exists()){
 
-        console.log("Weslley:", weslleySnap.data().total);
-
-        document.getElementById("downloadsWeslley").textContent =
+        document.getElementById("downloadsWeslley").innerHTML =
         weslleySnap.data().total;
 
     }
 
 
+    // FPS
     const fpsRef = doc(db,"downloads","FPS Booster V1.9.6");
     const fpsSnap = await getDoc(fpsRef);
 
+    console.log("FPS existe:", fpsSnap.exists());
+
     if(fpsSnap.exists()){
 
-        console.log("FPS:", fpsSnap.data().total);
-
-        document.getElementById("downloadsFPS").textContent =
+        document.getElementById("downloadsFPS").innerHTML =
         fpsSnap.data().total;
 
     }
