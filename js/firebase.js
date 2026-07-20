@@ -77,5 +77,72 @@ window.baixar = async function(nome){
     }
 
     console.log("Download:", nome);
-    
+
 }
+window.baixar = async function(nome){
+
+    const ref = doc(db,"downloads",nome);
+
+    const snap = await getDoc(ref);
+
+    if(snap.exists()){
+
+        await setDoc(ref,{
+            total: snap.data().total + 1
+        });
+
+    }else{
+
+        await setDoc(ref,{
+            total:1
+        });
+
+    }
+
+    console.log("Download:", nome);
+
+}
+
+// MOSTRAR ESTATÍSTICAS NO SITE
+
+async function mostrarEstatisticas(){
+
+    // VISITANTES
+    const visitasRef = doc(db,"site","visitas");
+    const visitasSnap = await getDoc(visitasRef);
+
+    if(visitasSnap.exists()){
+
+        document.getElementById("visitantes").textContent =
+        visitasSnap.data().total;
+
+    }
+
+
+    // DOWNLOAD WESLLEYMC
+    const weslleyRef = doc(db,"downloads","WeslleyMC V1.4");
+    const weslleySnap = await getDoc(weslleyRef);
+
+    if(weslleySnap.exists()){
+
+        document.getElementById("downloadsWeslley").textContent =
+        weslleySnap.data().total;
+
+    }
+
+
+    // DOWNLOAD FPS BOOSTER
+    const fpsRef = doc(db,"downloads","FPS Booster V1.9.6");
+    const fpsSnap = await getDoc(fpsRef);
+
+    if(fpsSnap.exists()){
+
+        document.getElementById("downloadsFPS").textContent =
+        fpsSnap.data().total;
+
+    }
+
+}
+
+
+mostrarEstatisticas();

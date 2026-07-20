@@ -351,7 +351,9 @@
 </main>
 
 <div class="bot-terrain" id="botTerrain"></div>
-
+<div class="stats">
+  <p>👥 Visitantes: <span id="visitantes">0</span></p>
+</div>
 <footer>
   <svg class="footer-creeper" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
     <rect x="2"  y="0"  width="12" height="12" fill="#4a9c4a"/>
@@ -450,5 +452,7 @@ setTimeout(()=>cc.classList.add('peek'),2500);
 cc.addEventListener('click',()=>toast('💥 SSSSS... Escapou por pouco!'));
 document.getElementById('heroCreeper').addEventListener('click',()=>toast('🟩 Creeper diz olá! 👋'));
 </script>
+<script type="module" src="js/firebase.js"></script>
+
 </body>
 </html>
