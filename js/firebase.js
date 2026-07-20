@@ -121,3 +121,22 @@ async function mostrarEstatisticas(){
 
 
 window.addEventListener("DOMContentLoaded", mostrarEstatisticas);
+async function mostrarEstatisticas(){
+
+    console.log("Função de estatísticas iniciou");
+
+    const weslleyRef = doc(db,"downloads","WeslleyMC V1.4");
+    const weslleySnap = await getDoc(weslleyRef);
+
+    console.log("Documento existe:", weslleySnap.exists());
+
+    if(weslleySnap.exists()){
+
+        console.log("Total:", weslleySnap.data().total);
+
+        document.getElementById("downloadsWeslley").textContent =
+        weslleySnap.data().total;
+
+    }
+
+}
