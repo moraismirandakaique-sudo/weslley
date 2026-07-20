@@ -62,27 +62,23 @@ window.baixar = async function(nome){
 
     const snap = await getDoc(ref);
 
+    let total = 1;
+
     if(snap.exists()){
-
-        await setDoc(ref,{
-            total: snap.data().total + 1
-        });
-
-    }else{
-
-        await setDoc(ref,{
-            total:1
-        });
-
+        total = snap.data().total + 1;
     }
 
-    console.log("Download:", nome);
+    await setDoc(ref,{
+        total: total
+    });
+
+    console.log("Download registrado:", nome, total);
 
 }
 
 
 
-async function mostrarEstatisticas(){
+
 
     // VISITANTES
     const visitasRef = doc(db,"site","visitas");
