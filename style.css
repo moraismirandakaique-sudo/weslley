@@ -19,3 +19,45 @@
     color:#38b000;
     font-size:18px;
 }
+.instagram-btn{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    width:fit-content;
+    margin:30px auto;
+    padding:14px 22px;
+
+    text-decoration:none;
+    color:white;
+
+    border-radius:18px;
+
+    background:linear-gradient(45deg,#f58529,#feda77,#dd2a7b,#8134af,#515bd4);
+
+    box-shadow:0 8px 25px rgba(221,42,123,.35);
+
+    transition:.35s ease;
+}
+
+.instagram-btn:hover{
+    transform:translateY(-5px) scale(1.03);
+    box-shadow:0 15px 35px rgba(221,42,123,.55);
+}
+
+.instagram-btn svg{
+    width:34px;
+    height:34px;
+    flex-shrink:0;
+}
+
+.instagram-btn strong{
+    display:block;
+    font-size:17px;
+    margin-bottom:3px;
+}
+
+.instagram-btn span{
+    font-size:14px;
+    opacity:.95;
+}
