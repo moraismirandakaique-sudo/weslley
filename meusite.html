@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="WeslleyMC — Texturas HD autorais para Minecraft Bedrock">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+<title>WeslleyMC — Início</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:#3ecf72;
+  --dk:#0d0d0d;
+  --cd:#151515;
+  --cd2:#1a1a1a;
+  --br:#262626;
+  --tx:#eaeaea;
+  --mut:#8a8a8a;
+  --ac:#e5484d;
+  --gl:#e0a72e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--dk);color:var(--tx);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.wrap{animation:fadeIn .35s ease}
+
+/* TOP NAV */
+.topnav{position:sticky;top:0;z-index:20;background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--br)}
+.topnav-in{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tn-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.2px}
+.tn-icon{width:26px;height:26px;border-radius:6px;background:var(--g);color:#0d0d0d;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.tn-right{display:flex;align-items:center;gap:12px}
+.tn-cta{background:var(--g);color:#0d0d0d;font-size:13px;font-weight:600;padding:8px 16px;border-radius:7px;white-space:nowrap;transition:opacity 0.2s}
+.tn-cta:hover{opacity:0.9}
+
+/* HERO */
+.hero{position:relative;padding:64px 20px;border-radius:14px;margin-top:24px;overflow:hidden;border:1px solid var(--br);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:380px}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.hero h1{font-size:32px;font-weight:700;margin-bottom:12px;letter-spacing:-0.5px}
+.hero p{color:var(--mut);font-size:16px;margin-bottom:24px}
+.btn-hero{display:inline-flex;align-items:center;gap:8px;background:var(--g);color:#0d0d0d;font-weight:700;padding:12px 24px;border-radius:8px;font-size:15px;transition:transform 0.2s}
+.btn-hero:hover{transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{margin-top:60px;text-align:center;padding:24px 0;border-top:1px solid var(--br)}
+.foot-name{font-weight:700;font-size:14px}
+.foot-sub{color:var(--mut);font-size:12px;margin-top:4px}
+</style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <div class="topnav-in">
+      <a href="index.html" class="tn-brand">
+        <div class="tn-icon">W</div>
+        <span>WeslleyMC</span>
+      </a>
+      <div class="tn-right">
+        <a href="texturas.html" class="tn-cta">Ver Texturas</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Texturas Autorais para Minecraft Bedrock</h1>
+        <p>Aprimore sua jogabilidade no PvP com pack de texturas de alta performance e visual exclusivo.</p>
+        <a href="texturas.html" class="btn-hero">
+          Ver Texturas
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="foot-name">WeslleyMC</div>
+      <div class="foot-sub">Texturas • Conteúdo • Minecraft Bedrock</div>
+    </footer>
+  </div>
+
+</body>
+</html>

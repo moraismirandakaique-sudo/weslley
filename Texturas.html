@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="Baixe as melhores Texturas HD para Minecraft Bedrock">
+<title>Texturas — WeslleyMC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:#3ecf72;
+  --dk:#0d0d0d;
+  --cd:#151515;
+  --cd2:#1a1a1a;
+  --br:#262626;
+  --tx:#eaeaea;
+  --mut:#8a8a8a;
+  --ac:#e5484d;
+  --gl:#e0a72e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--dk);color:var(--tx);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.wrap{animation:fadeIn .35s ease}
+
+/* TOP NAV */
+.topnav{position:sticky;top:0;z-index:20;background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--br)}
+.topnav-in{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tn-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.2px}
+.tn-icon{width:26px;height:26px;border-radius:6px;background:var(--g);color:#0d0d0d;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.tn-right{display:flex;align-items:center;gap:12px}
+.tn-cta{background:var(--cd2);border:1px solid var(--br);color:var(--tx);font-size:13px;font-weight:600;padding:8px 16px;border-radius:7px;white-space:nowrap}
+
+/* TITULO */
+.sec-title{font-size:22px;font-weight:700;margin:32px 0 16px;letter-spacing:-0.3px}
+
+/* GRID DE TEXTURAS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:20px}
+.card{background:var(--cd);border:1px solid var(--br);border-radius:12px;overflow:hidden;transition:transform 0.2s, border-color 0.2s;cursor:pointer}
+.card:hover{transform:translateY(-3px);border-color:#444}
+.card-img{width:100%;height:180px;background:var(--cd2);object-fit:cover;display:block}
+.card-body{padding:16px}
+.card-title{font-size:16px;font-weight:700;margin-bottom:6px}
+.card-desc{font-size:13px;color:var(--mut);margin-bottom:12px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{background:var(--cd2);border:1px solid var(--br);color:var(--mut);font-size:11px;padding:3px 8px;border-radius:4px}
+
+/* DETALHES */
+.detail-page{display:none}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--mut);font-size:13px;font-weight:600;margin:24px 0;cursor:pointer}
+.back-btn:hover{color:var(--tx)}
+.detail-card{background:var(--cd);border:1px solid var(--br);border-radius:14px;padding:24px}
+.detail-actions{margin-top:20px}
+.btn-huge{display:inline-flex;align-items:center;gap:8px;background:var(--g);color:#0d0d0d;font-weight:700;padding:12px 24px;border-radius:8px;font-size:15px}
+.colors-row{display:flex;gap:8px;margin:16px 0}
+.cpill{width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,0.2)}
+
+/* FOOTER */
+.footer{margin-top:60px;text-align:center;padding:24px 0;border-top:1px solid var(--br)}
+.foot-name{font-weight:700;font-size:14px}
+.foot-sub{color:var(--mut);font-size:12px;margin-top:4px}
+</style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <div class="topnav-in">
+      <a href="index.html" class="tn-brand">
+        <div class="tn-icon">W</div>
+        <span>WeslleyMC</span>
+      </a>
+      <div class="tn-right">
+        <a href="index.html" class="tn-cta">Início</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    
+    <div id="page-list">
+      <h2 class="sec-title">Texturas Disponíveis</h2>
+      <div class="grid">
+
+        <div class="card" onclick="openDetail('detail-weslley')">
+          <div class="card-body">
+            <div class="card-title">Weslley 1K</div>
+            <div class="card-desc">Textura focada em PvP e alta performance.</div>
+            <div class="tags">
+              <span class="tag">PvP</span>
+              <span class="tag">Low Fire</span>
+              <span class="tag">Bedrock</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="openDetail('detail-moreno')">
+          <div class="card-body">
+            <div class="card-title">Moreno 1K</div>
+            <div class="card-desc">Edição especial otimizada para combates rápidos.</div>
+            <div class="tags">
+              <span class="tag">FPS Boost</span>
+              <span class="tag">Bedrock</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="openDetail('detail-dentritos')">
+          <div class="card-body">
+            <div class="card-title">Dentritos 1K</div>
+            <div class="card-desc">Pack com 9 variações de cores incríveis.</div>
+            <div class="tags">
+              <span class="tag">9 Cores</span>
+              <span class="tag">Low Fire</span>
+              <span class="tag">Bedrock</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="detail-weslley" class="detail-page">
+      <div class="back-btn" onclick="closeDetail()">← Voltar para as texturas</div>
+      <div class="detail-card">
+        <h2>Weslley 1K</h2>
+        <p class="card-desc" style="margin-top:8px">Textura autoral otimizada para PvP.</p>
+        <div class="detail-actions">
+          <a href="https://discord.gg/Wyg49JPAkw" class="btn-huge" target="_blank">
+            Download no Discord
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="detail-moreno" class="detail-page">
+      <div class="back-btn" onclick="closeDetail()">← Voltar para as texturas</div>
+      <div class="detail-card">
+        <h2>Moreno 1K</h2>
+        <p class="card-desc" style="margin-top:8px">Textura limpa e focada em ganhar FPS.</p>
+        <div class="detail-actions">
+          <a href="https://discord.gg/Wyg49JPAkw" class="btn-huge" target="_blank">
+            Download no Discord
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="detail-dentritos" class="detail-page">
+      <div class="back-btn" onclick="closeDetail()">← Voltar para as texturas</div>
+      <div class="detail-card">
+        <h2>Dentritos 1K</h2>
+        <p class="card-desc" style="margin-top:8px">Disponível em 9 cores diferentes.</p>
+        <div class="colors-row">
+          <div class="cpill" style="background:#ff0000" title="Vermelho"></div>
+          <div class="cpill" style="background:#0088ff" title="Azul"></div>
+          <div class="cpill" style="background:#00ff66" title="Verde"></div>
+          <div class="cpill" style="background:#ff00cc" title="Rosa"></div>
+          <div class="cpill" style="background:#ffffff" title="Branco"></div>
+        </div>
+        <div class="detail-actions">
+          <a href="https://discord.gg/Wyg49JPAkw" class="btn-huge" target="_blank">
+            Download no Discord
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="foot-name">WeslleyMC</div>
+      <div class="foot-sub">Texturas • Conteúdo • Minecraft Bedrock</div>
+    </footer>
+  </div>
+
+  <script>
+    function openDetail(id) {
+      document.getElementById('page-list').style.display = 'none';
+      var pages = document.querySelectorAll('.detail-page');
+      pages.forEach(p => p.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo(0,0);
+    }
+
+    function closeDetail() {
+      var pages = document.querySelectorAll('.detail-page');
+      pages.forEach(p => p.style.display = 'none');
+      document.getElementById('page-list').style.display = 'block';
+      window.scrollTo(0,0);
+    }
+  </script>
+
+</body>
+</html>
